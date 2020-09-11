@@ -14,7 +14,8 @@ import './App.css';
 const useStyles = makeStyles((theme) => ({
   root: {
       width: '100%',
-      height: '100vh',
+      maxHeight: '100vh',
+      overflow: 'hidden',
       backgroundImage: 'url("/checkmate.jpeg")',
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
       background: 'linear-gradient(180deg, rgba(166, 166, 166, 0.462) 0%, rgba(53, 53, 53, 0.414) 22%, rgba(0, 0, 0, 0.758) 100%)',
       zIndex: '2',
       width: '90vw',
-      height: '85vh',
+      height: '92vh',
       margin: 'auto',
       marginTop: '3vh',
   },

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 const Accordion = withStyles({
   root: {
+    background: 'linear-gradient(180deg, rgba(166, 166, 166, 0.462) 0%, rgba(53, 53, 53, 0.414) 22%, rgba(0, 0, 0, 0.758) 100%)',
     border: '1px solid rgba(0, 0, 0, .125)',
     boxShadow: 'none',
     '&:not(:last-child)': {
@@ -48,8 +49,19 @@ const AccordionDetails = withStyles((theme) => ({
   },
 }))(MuiAccordionDetails);
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    overflowY: 'scroll',
+    height: '87vh',
+  },
+  text: {
+    color: 'white',
+  }
+}))
+
 
 export const Accordian = () => {
+    const classes = useStyles();
     const [gameData, setGameData] = useState({});
 
     const [expanded, setExpanded] = React.useState('panel1');
@@ -70,19 +82,20 @@ export const Accordian = () => {
     }, []);
 
     return gameData && (
-        <div>
+        <div className={classes.root}>
             {gameData.pgnlist ? gameData.pgnlist.map((item, index) => (
-              <Accordion square expanded={expanded === 'panel' + String(index)} onChange={handleChange('panel' + String(index))}>
+              <Accordion expanded={expanded === 'panel' + String(index)} onChange={handleChange('panel' + String(index))}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                  <Typography>{JSON.stringify(item.name)}</Typography>
+                  <Typography className={classes.text}>{JSON.stringify(item.name)}</Typography>
                 </AccordionSummary>
               <AccordionDetails>
-                <Typography>
+                <Typography className={classes.text}>
                   {JSON.stringify(item.game)}
                 </Typography>
+                <iframe src={item.frame} width="760" height="500" frameborder="0" />
               </AccordionDetails>
             </Accordion>
             )) : 'fetching....' }
         </div>
     )
-}                
+}
