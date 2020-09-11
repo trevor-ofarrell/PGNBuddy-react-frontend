@@ -6,6 +6,8 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { color } from '@material-ui/system';
 
 const Accordion = withStyles({
   root: {
@@ -52,13 +54,21 @@ const AccordionDetails = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   root: {
     overflowY: 'scroll',
-    height: '87vh',
+    height: '91.5vh',
   },
   text: {
     color: 'white',
+  },
+  loading: {
+    justifyContent: 'center',
+    height: '50vh',
+    marginLeft: '32vw',
+    marginTop: '30vh',
+    color: 'white'
   }
 }))
 
+//   <iframe src={item.frame} width="760" height="500" frameborder="0" />
 
 export const Accordian = () => {
     const classes = useStyles();
@@ -84,7 +94,7 @@ export const Accordian = () => {
     return gameData && (
         <div className={classes.root}>
             {gameData.pgnlist ? gameData.pgnlist.map((item, index) => (
-              <Accordion expanded={expanded === 'panel' + String(index)} onChange={handleChange('panel' + String(index))}>
+              <Accordion TransitionProps={{ unmountOnExit: true }} expanded={expanded === 'panel' + String(index)} onChange={handleChange('panel' + String(index))}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                   <Typography className={classes.text}>{JSON.stringify(item.name)}</Typography>
                 </AccordionSummary>
@@ -92,10 +102,9 @@ export const Accordian = () => {
                 <Typography className={classes.text}>
                   {JSON.stringify(item.game)}
                 </Typography>
-                <iframe src={item.frame} width="760" height="500" frameborder="0" />
               </AccordionDetails>
             </Accordion>
-            )) : 'fetching....' }
+            )) : <CircularProgress disableShrink size="40vh" thickness={1.5} className={classes.loading}/> }
         </div>
     )
 }

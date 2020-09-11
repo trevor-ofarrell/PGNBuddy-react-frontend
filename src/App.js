@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
   paper: {
       background: 'linear-gradient(180deg, rgba(166, 166, 166, 0.462) 0%, rgba(53, 53, 53, 0.414) 22%, rgba(0, 0, 0, 0.758) 100%)',
       zIndex: '2',
-      width: '90vw',
+      width: '99vw',
       height: '92vh',
       margin: 'auto',
-      marginTop: '3vh',
+      marginTop: '1.5vh',
   },
 }));
 
